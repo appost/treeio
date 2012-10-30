@@ -20,3 +20,5 @@ simplejson
 sphinx
 johnny-cache
 django-pandora
+psycopg2
+
