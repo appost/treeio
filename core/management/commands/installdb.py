@@ -28,11 +28,11 @@ class Command(BaseCommand):
         }
 
         db = {}
-        db['ENGINE'] = raw_input('Enter database engine <mysql,postgresql,oracle,sqlite3> (defaults to sqlite3): ')
+        db['ENGINE'] = raw_input('Enter database engine <mysql,postgresql,oracle,sqlite3,postgresql_psycopg2> (defaults to sqlite3): ')
         if not db['ENGINE']:
             db['ENGINE'] = 'sqlite3'
 
-        if db['ENGINE'] in ('mysql', 'postgresql', 'oracle', 'sqlite3'):
+        if db['ENGINE'] in ('mysql', 'postgresql', 'oracle', 'sqlite3', 'postgresql_psycopg2'):
             db['ENGINE'] = 'django.db.backends.' + db['ENGINE']
         else:
             raise CommandError('Unkown database engine: %s' % db['ENGINE'])
