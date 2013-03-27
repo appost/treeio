@@ -11,6 +11,8 @@ Django settings for treeio project.
 
 from os import path
 PROJECT_ROOT = path.abspath(path.dirname(__file__)) # assuming settings are in the same dir as source
+import sys
+sys.path.append("../")
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
