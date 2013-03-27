@@ -25,11 +25,25 @@ ADMINS = (
 MANAGERS = ADMINS
 
 from core.db import DatabaseDict
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
 
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+DATABASES = {
+    "default": {
+        # Add "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
+        "ENGINE": "django.db.backends.",
+        # DB name or path to database file if using sqlite3.
+        "NAME": "",
+        # Not used with sqlite3.
+        "USER": "",
+        # Not used with sqlite3.
+        "PASSWORD": "",
+        # Set to empty string for localhost. Not used with sqlite3.
+        "HOST": "",
+        # Set to empty string for default. Not used with sqlite3.
+        "PORT": "",
+    }
+}
+
+
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -465,3 +479,10 @@ MESSAGE_STORAGE = 'treeio.core.contrib.messages.storage.cache.CacheStorage'
 
 # Dajaxice settings
 DAJAXICE_MEDIA_PREFIX="dajaxice"
+
+import dj_database_url
+
+DATABASES['default'] =  dj_database_url.config()
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
