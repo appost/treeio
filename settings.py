@@ -15,6 +15,8 @@ PROJECT_ROOT = path.abspath(path.dirname(__file__)) # assuming settings are in t
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+DEBUG_HACK = True
+
 QUERY_DEBUG = False
 QUERY_DEBUG_FULL = False
 
@@ -152,6 +154,7 @@ INSTALLED_APPS = (
     'coffin',
     'captcha',
     'south',
+    'webodt',
 )
 
 TEST_RUNNER = 'treeio.core.test_runner.CustomTestRunner'
@@ -461,3 +464,8 @@ MESSAGE_STORAGE = 'treeio.core.contrib.messages.storage.cache.CacheStorage'
 
 # Dajaxice settings
 DAJAXICE_MEDIA_PREFIX="dajaxice"
+
+WEBODT_CONVERTER = 'webodt.converters.abiword.AbiwordODFConverter'
+
+WEBODT_TEMPLATE_PATH = path.join(PROJECT_ROOT, 'templates/html/webodt')
+

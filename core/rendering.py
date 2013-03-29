@@ -52,6 +52,15 @@ def render_to_string(template_name, context={}, context_instance=None, response_
         context['site_domain'] = RequestSite(context_instance['request']).domain
     
     context = _preprocess_context_html(context)
+ 
+    if (settings.DEBUG_HACK):
+        f = open("/tmp/debug_hack.txt", "a")
+        f.write("TEMPLATE: \n")
+        f.write(template_name + "\n")
+        f.write(str(context) + "\n")
+        f.write(str(context_instance) + "\n")
+        f.write("*********************************************************************\n")
+        f.close()
     
     rendered_string = loader.render_to_string(template_name, context, context_instance)
     return rendered_string
