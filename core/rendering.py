@@ -55,9 +55,11 @@ def render_to_string(template_name, context={}, context_instance=None, response_
  
     if (settings.DEBUG_HACK):
         f = open("/tmp/debug_hack.txt", "a")
-        f.write("TEMPLATE: \n")
+        f.write("***TEMPLATE***: \n")
         f.write(template_name + "\n")
+        f.write("***context***: \n")
         f.write(str(context) + "\n")
+        f.write("***context_instance***: \n")
         f.write(str(context_instance) + "\n")
         f.write("*********************************************************************\n")
         f.close()
