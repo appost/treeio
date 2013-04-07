@@ -3,6 +3,8 @@
 # This file is part of Treeio.
 # License www.tree.io/license
 
+# Modified by appost
+
 """
 Hardtree URLs
 """
@@ -46,6 +48,7 @@ urlpatterns = patterns('',
     (r'^messaging/', include('treeio.messaging.urls')),
     (r'^news/', include('treeio.news.urls')),
     (r'^projects/', include('treeio.projects.urls')),
+    if_installed('treeio.gen_documents',r'^sales/', include('treeio.gen_documents.urls')),
     (r'^sales/', include('treeio.sales.urls')),
     (r'^services/', include('treeio.services.urls')),
     (r'^reports/', include('treeio.reports.urls')),
@@ -80,6 +83,7 @@ urlpatterns = patterns('',
     # Changed to backend (because it's backend!)
      (r'^backend/', include(admin.site.urls)),
      (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_DOC_ROOT}),
+
 )
 
 

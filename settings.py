@@ -3,6 +3,9 @@
 # This file is part of Treeio.
 # License www.tree.io/license
 
+# Modified by appost
+
+
 # coding=utf-8
 
 """
@@ -158,6 +161,7 @@ INSTALLED_APPS = (
     'captcha',
     'south',
     'webodt',
+    'treeio.gen_documents',
 )
 
 TEST_RUNNER = 'treeio.core.test_runner.CustomTestRunner'
@@ -470,5 +474,5 @@ DAJAXICE_MEDIA_PREFIX="dajaxice"
 
 WEBODT_CONVERTER = 'webodt.converters.abiword.AbiwordODFConverter'
 
-WEBODT_TEMPLATE_PATH = path.join(PROJECT_ROOT, 'templates/html/webodt')
+WEBODT_TEMPLATE_PATH = path.join(PROJECT_ROOT, 'templates/odt')
 

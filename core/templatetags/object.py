@@ -298,7 +298,6 @@ register.object(comments_likes)
 
 @contextfunction
 def tags_box(context, object):
-       
     request = context['request']
     
     response_format = 'html'

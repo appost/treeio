@@ -343,7 +343,6 @@ def project_view(request, project_id, response_format='html'):
                     'record_form':form,
                     'subprojects':subprojects,
                     'filters': filters})
-
     return render_to_response('projects/project_view', context,
                               context_instance=RequestContext(request), response_format=response_format)
     

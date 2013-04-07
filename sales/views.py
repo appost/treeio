@@ -1095,7 +1095,7 @@ def order_invoice_view(request, order_id, response_format='html'):
              
     except:
         my_company = None
-    
+#    import ipdb; ipdb.set_trace()
     return render_to_response('sales/order_invoice_view',
                               {'order': order,
                                'ordered_products': ordered_products,

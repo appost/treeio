@@ -1,6 +1,8 @@
 """
 Rendering routines for Hardtree
 """
+# Modified by Appost
+
 
 from django.http import HttpResponse
 from django.contrib.sites.models import RequestSite
