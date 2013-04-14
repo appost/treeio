@@ -471,7 +471,6 @@ def htdatetime(context, date, dateformat='DATETIME_FORMAT'):
         date = date + timedelta(hours=hours, minutes=mins)
 
     result = djangodate(date, localeformat)
- 
     return Markup(result)
 
 register.filter('htdatetime', htdatetime)
