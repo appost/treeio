@@ -73,22 +73,25 @@ def order_invoice_view_gd(request, order_id, response_format='html'):
         context['services'] = service_lst
         context['deposit'] = service_lst[0].rate
         context['rent'] = property_lst[0].rate
-        import ipdb;ipdb.set_trace()
+        #import ipdb;ipdb.set_trace()
         order.datetime = htdatetime(RequestContext(request), order.datetime)
         context['order'] = order
         contact_values = order.client.contactvalue_set.all()
         context['client_email'] = contact_values.filter(field__field_type = 'email'.decode('utf-8'))[0]
         context['client_phone'] = contact_values.filter(field__field_type = 'phone'.decode('utf-8'))[0]
-        context['client_details'] = contact_values.filter(field__field_type = 'details'.decode('utf-8'))[0]
+        client_details = contact_values.filter(field__field_type = 'details'.decode('utf-8'))[0]
+        client_details.value = re.sub('<[^<]+?>', '', client_details.value)
+        context['client_details'] = client_details
         context['lead_details'] = re.sub('<[^<]+?>', '', order.opportunity.lead.details)
         context['lead_details'] = context['lead_details'].split('\n')
-        dcm = gen_files.gen_odt(fullpath + "/" + request.GET.keys()[0].encode('ascii'), Context(context), context_instance=RequestContext(request))
-        dcm_str = dcm.read()
-        dcm.close()
+        import ipdb; ipdb.set_trace()
+        dcm = gen_files.gen_odt(fullpath + "/" + request.GET.keys()[0].encode('ascii'), Context(context), context_instance=RequestContext(request), file_name= "%s" % request.GET.keys()[0].encode('ascii'))
+        #dcm_str = dcm.read()
+        #dcm.close()
         
         #response = HttpResponse(dcm_str, content_type='application/x-download')
-        response['Content-Disposition'] = 'attachment; filename= "%s"' % request.GET.keys()[0].encode('ascii')
-        return response
+        #dcm['Content-Disposition'] = 'attachment; filename= "%s"' % request.GET.keys()[0].encode('ascii')
+        return dcm
     return render_to_response('gen_documents/order_invoice_view_gd',
                               {'order': order,
                                'files': odts_names,
