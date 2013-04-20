@@ -73,7 +73,6 @@ def order_invoice_view_gd(request, order_id, response_format='html'):
         context['services'] = service_lst
         context['deposit'] = service_lst[0].rate
         context['rent'] = property_lst[0].rate
-        #import ipdb;ipdb.set_trace()
         order.datetime = htdatetime(RequestContext(request), order.datetime)
         context['order'] = order
         contact_values = order.client.contactvalue_set.all()
@@ -84,13 +83,14 @@ def order_invoice_view_gd(request, order_id, response_format='html'):
         context['client_details'] = client_details
         context['lead_details'] = re.sub('<[^<]+?>', '', order.opportunity.lead.details)
         context['lead_details'] = context['lead_details'].split('\n')
+        #import ipdb;ipdb.set_trace()
         dcm = gen_files.gen_odt(fullpath + "/" + request.GET.keys()[0].encode('ascii'), Context(context), context_instance=RequestContext(request))
         dcm_str = dcm.read()
         dcm.close()
         
         response = HttpResponse(dcm_str, content_type='application/x-download')
-        #dcm['Content-Disposition'] = 'attachment; filename= "%s"' % request.GET.keys()[0].encode('ascii')
-        return dcm
+        response['Content-Disposition'] = 'attachment; filename= "%s"' % request.GET.keys()[0].encode('ascii')
+        return response
     return render_to_response('gen_documents/order_invoice_view_gd',
                               {'order': order,
                                'files': odts_names,
