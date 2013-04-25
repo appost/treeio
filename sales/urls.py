@@ -60,6 +60,8 @@ urlpatterns = patterns('treeio.sales.views',
             'status_delete', name='sales_status_delete'),
 
         # Subscriptions
+        url(r'^subscription/index(\.(?P<response_format>\w+))?/?$', 
+            'subscription_index', name='sales_subscription_index'),
         url(r'^subscription/add(\.(?P<response_format>\w+))?/?$', 
             'subscription_add', name='sales_subscription_add'),
         url(r'^subscription/add/order/(?P<order_id>\w+)/product/(?P<product_id>\w+)(\.(?P<response_format>\w+))?/?$', 

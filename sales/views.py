@@ -360,13 +360,14 @@ def ordered_product_delete(request, ordered_product_id, response_format='html'):
 def subscription_index(request, response_format='html'):
     "Subscription index page"
     
-    query = Q(status__hidden=False)
+    query = Q()
     if request.GET:
         if 'status' in request.GET and request.GET['status']:
             query = _get_filter_query(request.GET)
         else:
             query = query & _get_filter_query(request.GET)
-    
+
+    import ipdb; ipdb.set_trace()
     subscriptions = Object.filter_by_request(request, Subscription.objects.filter(query), mode="r")
     filters = OrderFilterForm(request.user.get_profile(), '', request.GET)
     ordered_products = subscriptions.orderedproduct_set.all()
