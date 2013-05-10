@@ -21,7 +21,7 @@ TEMPLATE_DEBUG = DEBUG
 
 #if True will report the values of template_name, context, context_instance
 #in /tmp/debug_hack.txt
-DEBUG_HACK = True
+DEBUG_HACK = False
 
 QUERY_DEBUG = False
 QUERY_DEBUG_FULL = False
